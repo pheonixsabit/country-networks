@@ -1,0 +1,83 @@
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Serial0/0
+ ip address 10.0.17.145 255.255.255.252
+!
+interface Serial1/0
+ ip address 10.0.17.142 255.255.255.252
+ clock rate 2000000
+!
+interface Serial2/0
+ ip address 10.0.17.134 255.255.255.252
+!
+interface Ethernet8/0
+ ip address 10.0.12.1 255.255.252.0
+ duplex auto
+ speed auto
+!
+router rip
+ version 2
+ network 10.0.12.0
+ network 10.0.17.132
+ network 10.0.17.140
+ no auto-summary
+!
+ip classless
+ip route 10.0.17.144 255.255.255.252 Serial0/0 
+ip route 10.0.16.0 255.255.255.0 Serial0/0 
+!
+ip flow-export version 9
+!
+!
+!
+no cdp run
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
